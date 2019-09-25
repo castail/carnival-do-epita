@@ -17,7 +17,6 @@ class CastailPlayer extends Player
 
     public function getChoice()
     {
-      return parent::paperChoice();
       // first round
       if ($this->result->getLastChoiceFor($this->mySide) == 0)
         return parent::paperChoice();
