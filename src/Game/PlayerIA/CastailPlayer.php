@@ -17,15 +17,14 @@ class CastailPlayer extends Player
 
     public function getChoice()
     {
-      if ($this->result->getLastChoiceFor($this->mySide) == 0) {
+      // first round
+      if ($this->result->getLastChoiceFor($this->mySide) == 0)
         return parent::paperChoice();
-      }
+      // frequency counting strategy
       $rockCount = 0;
       $paperCount = 0;
       $scissorsCount = 0;
       for ($i = 1; $i <= $this->result->getNbRound(); $i++) {
-        //$stats = $this->result->getStatsFor($this->opponentSide);
-        //$this->prettyDisplay(var_dump($stats[score]));
         if ($this->result->getLastChoiceFor($this->opponentSide) == 'rock')
           $rockCount++;
         if ($this->result->getLastChoiceFor($this->opponentSide) == 'paper')
@@ -40,7 +39,6 @@ class CastailPlayer extends Player
         return parent::scissorsChoice();
       }
 
-      //var_dump
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Choice           ?    $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Choice ?    $this->result->getLastChoiceFor($this->opponentSide) -- if 0 (first round)
@@ -65,6 +63,6 @@ class CastailPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
         
-        return parent::paperChoice();            
+        return parent::rockChoice();            
   }
 };
