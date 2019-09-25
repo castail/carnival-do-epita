@@ -20,17 +20,26 @@ class CastailPlayer extends Player
       if ($this->result->getLastChoiceFor($this->mySide) == 0) {
         return parent::paperChoice();
       }
+      $rockCount = 0;
+      $paperCount = 0;
+      $scissorsCount = 0;
       for ($i = 1; $i <= $this->result->getNbRound(); $i++) {
-        if ($this->result->getLastChoiceFor($this->opponentSide) == 'rock') {
+        //$stats = $this->result->getStatsFor($this->opponentSide);
+        //$this->prettyDisplay(var_dump($stats[score]));
+        if ($this->result->getLastChoiceFor($this->opponentSide) == 'rock')
+          $rockCount++;
+        if ($this->result->getLastChoiceFor($this->opponentSide) == 'paper')
+          $paperCount++;
+        if ($this->result->getLastChoiceFor($this->opponentSide) == 'scissors')
+          $scissorsCount++;
+        if ($rockCount > $paperCount) {
+          if ($scissorsCount > $rockCount)
+            return parent::rockChoice();
           return parent::paperChoice();
         }
-        if ($this->result->getLastChoiceFor($this->opponentSide) == 'paper') {
-          return parent::scissorsChoice();
-        }
-        if ($this->result->getLastChoiceFor($this->opponentSide) == 'scissors') {
-          return parent::rockChoice();
-        }
+        return parent::scissorsChoice();
       }
+
       //var_dump
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Choice           ?    $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
