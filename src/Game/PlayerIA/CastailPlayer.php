@@ -17,10 +17,9 @@ class CastailPlayer extends Player
 
     public function getChoice()
     {
-      //if ($this->result->getLastChoiceFor($this->mySide;) == 0) {
-       // $res = rand(0,2);
+      if ($this->result->getLastChoiceFor($this->mySide;) == 0) {
         //return parent::paperChoice();
-    //  }
+      }
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Choice           ?    $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Choice ?    $this->result->getLastChoiceFor($this->opponentSide) -- if 0 (first round)
